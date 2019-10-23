@@ -1,0 +1,28 @@
+table, td
+{
+    margin : auto;
+    background-color: yellow;
+    border-color: blue;
+    border-width: medium;
+    /*
+    column-width: 50px;
+    height: 50px;
+    */
+    column-width: 85px;
+    height: 85px;
+    
+}
+
+#jstext /*change to alignLeft*/
+{
+
+    float : left;
+    font-size: 20px;
+    color: black;
+}
+#jstext2 /*Change to alignRight*/
+{
+    float : right;
+    font-size: 20px;
+    color: black;
+}
