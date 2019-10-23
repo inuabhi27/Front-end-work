@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<h1>Delete Game</h1>
+<p>Only the player who created the game can delete the game.</p>
+<p>Enter your username and password to verify that you have the authority to delete a game. Otherwise this program will crash.</p>
+{% if error %} <strong>ERROR:</strong> {{ error }} {% endif %}
+	<div>
+    	<a href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<form method="post" action="">
+		<ul>
+		<li>Enter your Username:</li>
+        <li><input type="text" name="username"></li>
+		<li>Enter your Password:</li>
+        <li><input type="text" name="password"></li>
+		<li><button type="submit">Submit</button></li>
+	</ul>
+
+	</form>
+</body>
+
+</html>
