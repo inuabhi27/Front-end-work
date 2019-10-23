@@ -1,0 +1,35 @@
+<!doctype html>
+<title> Welcome to the Salon </title>
+
+<div>
+  <div>
+  {% if g.user.user_type == 'owner' %}
+    <a href="{{ url_for('profile') }}">Home</a> 
+    <a href="{{ url_for('register') }}">Create stylist account</a> 
+    <a href="{{ url_for('stylist_page') }}">Stylists</a> 
+    <a href="{{ url_for('patron_page') }}">Patrons</a> 
+    <a href="{{ url_for('logout') }}">Log out</a>  
+  {% elif g.user.user_type == 'stylist' %} 
+      <a href="{{ url_for('profile') }}">Home</a> 
+      <a href="{{ url_for('logout') }}">Log out</a>
+  {% elif g.user.user_type == 'patron' %} 
+      <a href="{{ url_for('profile') }}">Home</a> 
+      <a href="{{ url_for('specific') }}">Stylists</a> 
+      <a href="{{ url_for('logout') }}">Log out</a>  
+  {% else %}
+    <a href="{{ url_for('home') }}">Home</a> 
+    <a href="{{ url_for('register') }}">Register</a> 
+    <a href="{{ url_for('login') }}">Log In</a>
+  {% endif %}
+  </div>
+  {% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+      {% for message in flashes %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <div>
+  {% block body %}{% endblock %}
+  </div>
+</div>

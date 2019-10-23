@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block title %}Sign Up For An Account{% endblock %}
+{% block body %}
+  <h2>Welcome New Users</h2>
+  {% if error %}<div><strong>Error:</strong> {{ error }}</div>{% endif %}
+  <form action="" method="POST">
+    <dl>
+      <dt>Username:
+      <dd><input type="text" name="username" size="50" value="{{ request.form.username }}">
+      <dt>Password:
+      <dd><input type="password" name="password" size="80">
+    </dl>
+    <div><input type="submit" value="Sign Up"></div>
+  </form>
+{% endblock %}

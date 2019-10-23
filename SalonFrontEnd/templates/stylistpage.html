@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block title %}Stylist's Page{% endblock %}
+
+{% block body %}
+    <h2>Scheduled Appointments</h2> 
+    {% for event in events %}
+        <p>Patron's Name: {{ event.name }} and Appointment Date: {{ event.date }}</p>
+    {% else %}
+        <p>No Appointments currently scheduled.</p>
+    {% endfor %}
+{% endblock %}

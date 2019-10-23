@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+	{% if g.user.user_type == 'owner' %}
+		<h2>Scheduled Appointments</h2>
+		
+		{% for event in events %}
+			<p>Patron's Name: {{ event.name }} and Appointment Date: {{ event.date }}</p>
+			{% if event.stylist == 'test' %}
+				<em>No stylist currently scheduled.</em>
+			{% else %}
+				<p>Stylist for {{ event.name }}: {{ event.stylist }}</p>
+			{% endif %}
+		{% else %}
+			<em>No Appointments currently scheduled yet.</em>
+		{% endfor %}
+		
+	{% elif g.user.user_type == 'stylist' %}
+		<h2>Scheduled Appointments</h2>
+		
+		{% for event in events %}
+			<p>Patron's Name: {{ event.name }} and Appointment Date: {{ event.date }}</p>
+		{% else %}
+			<em>No Appointments currently scheduled.</em>
+		{% endfor %}
+		
+		<h2>All Appointments</h2>
+		
+		{% for i in availiable %}
+			<p>Patron's Name: {{ i.name }} and Appointment Date: {{ i.date }}</p>
+				{% if i.stylist == 'test' %}
+					<form action="{{ url_for('confirm_stylist') }}" method="POST">
+						<input type="hidden" name="stylist" value="{{ g.user.username }}">
+						<input type="hidden" name="event_id" value="{{ i.event_id }}">
+						<div><input type="submit" value="Confirm Stylist"></div></form>
+				{% endif %}
+		{% endfor %}
+		
+	{% elif g.user.user_type == 'patron' %}
+		<h2>Schedule an appointment. Please remember that each appointment takes one hour before scheduling an appointment.</h2>
+		<h2>Stylists works from Tues to Saturday (11/6/2018-11/10/2018) from 10am to 8pm.</h2>
+			<form action="{{ url_for('confirm_appointment') }}" method="POST">
+				<input type="hidden" name="patron_id" value="{{ g.user.user_id }}">
+				<dl>
+					<dt>Please enter your Name:
+      				<dd><input type="text" name="name" size="50">
+      				<dt>Enter when you want to schedule appointment and select a stylist from the menu option to confirm the appointment.
+      				<dd><input type="datetime-local" name="date" min="2018-11-06T10:00" max="2018-11-10T20:00" required></p>
+      			</dl>
+      			<div><input type="submit" value="Confirm Date"></div>
+			</form>
+		<h2>All of your appointments</h2>
+		{% for event in events %}
+			<p>Patron's name: {{ event.name }} and Appointment time: {{ event.date }}
+				<form action="{{ url_for('cancel_appointment') }}" method="POST">
+					<input type="hidden" name="event_id" value="{{ event.event_id }}">
+					<div><input type="submit" value="Cancel this appointment?"></div></form>
+			</p>
+		{% else %}
+			<p>No current appointments as of yet.</p>
+		{% endfor %}
+		
+	{% endif %}  
+{% endblock %}
