@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Connect Four</title>
+    <h1>Connect Four</h1>
+	<link rel="stylesheet" type="text/css" media="screen" href="main.css">
+	<script src="connectFour.js"></script>
+	
+</head>
+<body>
+	
+	<div id="timer"></div> 
+	
+	
+	
+	<script>
+		
+		
+	
+
+		
+		var p1 = new players(1, true,21);
+		var p2 = new players(2, false, 21);
+		
+			
+		alert("Click ok to begin " + p1.name + "'s turn");
+		
+		
+		makeGrid(p1, p2); //change name to make grid.
+		
+		
+		
+		var timerVar = setInterval(countTimer, 1000);
+		var totalSeconds = 0;
+		function countTimer() //change some of this. 
+		{
+			++totalSeconds;
+            var hour = Math.floor(totalSeconds /3600);
+            var minute = Math.floor((totalSeconds - hour*3600)/60);
+			var seconds = totalSeconds - (hour*3600 + minute*60);
+			document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+		}
+		
+		
+		
+		
+		
+	</script>
+
+
+	
+	
+</body>
+</html>
+
+
+
+
+
+
