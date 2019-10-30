@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Angular JS App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+       <div class="main" ng-app="myList" ng-controller="myListController">
+           <h1>Notes</h1>
+           <div class="addItem">
+               <input ng-model = "newItem" placeholder="Insert Text" class ="addText">
+               <button ng-click = "pushItem()">Add</button>
+           </div>
+           <ul>
+               <li ng-repeat="i in items">
+                   {{i}}
+                   <span ng-click = "deleteItem($index)">x</span>
+                </li>
+           </ul>
+       </div>
+
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+       <script src="script.js"></script>
+    </body>
+</html>
