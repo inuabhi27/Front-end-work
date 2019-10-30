@@ -1,4 +1,4 @@
-# Created a simple List app using Angular JS. 
+# Created a simple List app using Angular JS
 
 Name: Abhi Inuganti
 
